@@ -9,6 +9,7 @@ const config = {
   output: {
     path: BUILD_DIR,
     filename: 'bundle.js',
+    publicPath: 'http://localhost:3005',
   },
   resolve: {
     extensions: ['.jsx', '.js'],

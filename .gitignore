@@ -1,1 +1,3 @@
 node_modules
+eventData.json
+src/client/dist/bundle.js
