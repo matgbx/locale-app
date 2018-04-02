@@ -2,9 +2,8 @@ import React from 'react';
 import EventComp from './EventComp';
 
 const EventList = ((props) => {
-  console.log(props.events);
   return (
-    <div>
+    <div className="eventList">
       {
         props.events.map(event => <EventComp eventData={event} />)
       }

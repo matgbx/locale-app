@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 
-const hood = mongoose.Schema({
-  zipCode: Number,
+const hoodSchema = mongoose.Schema({
+  zipCode: String,
   events: [
     {
       title: String,
-      location: String,
+      location: { latitude: String, longitude: String },
       description: String,
       time: String,
       date: String,
@@ -13,6 +13,6 @@ const hood = mongoose.Schema({
   ],
 });
 
-const Hoods = mongoose.Model('neighbourhoods', hood);
+const Hoods = mongoose.model('Hoods', hoodSchema, 'hoods');
 
 module.exports = Hoods;

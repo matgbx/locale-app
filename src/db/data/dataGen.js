@@ -106,4 +106,7 @@ const genEventsByZip = (numOfEvents, cb) => {
   cb('done!');
 };
 
-module.exports = genEventsByZip;
+module.exports = {
+  genEventsByZip,
+  zipCodes,
+};

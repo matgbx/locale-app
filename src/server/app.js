@@ -1,10 +1,12 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
+const db = require('../db/helpers');
+require('dotenv').config({ path: path.join(__dirname, '/.env') });
 
 const app = http.createServer((req, res) => {
   const { method, url } = req;
-  console.log(url);
+  const urlSplit = url.split('/').slice(1);
   if (method === 'GET' && url === '/') {
     const stream = fs.createReadStream(path.join(__dirname, '../client/dist/index.html'), 'utf-8');
     res.writeHead(200, { 'Content-Type': 'text/html' });
@@ -21,6 +23,15 @@ const app = http.createServer((req, res) => {
     const stream = fs.createReadStream(path.join(__dirname, '../client/dist/styles.css'), 'utf-8');
     res.writeHead(200, { 'Content-Type': 'text/css' });
     stream.pipe(res);
+  } else if (method === 'GET' && urlSplit[0] === 'events') {
+    db.fetchEvents(urlSplit[1], urlSplit[2], (err, result) => {
+      if (err) {
+        console.error(err);
+      } else {
+        res.writeHead(200, { 'Content-Type': 'text/javascript' });
+        res.end(JSON.stringify(result));
+      }
+    });
   }
 });
 

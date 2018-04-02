@@ -12,4 +12,6 @@ const eventArr = [
   },
 ];
 
-render(<AppMain events={eventArr} />, document.getElementById('app'));
+const center = { lat: 37.771478, lng: -122.443859 };
+
+render(<AppMain events={eventArr} center={center} zipCode={94123} />, document.getElementById('app'));
