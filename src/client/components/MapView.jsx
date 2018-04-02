@@ -7,7 +7,7 @@ const MapView = (props) => {
     <div className="google-map">
       <GoogleMapReact
         bootstrapURLKeys={{ key: 'AIzaSyCp2Tgf8U3lVzEOAAFBp4q6X2zvpjg5wZY' }}
-        defaultCenter={props.center}
+        center={props.center}
         defaultZoom={15}
       >
         {
@@ -16,6 +16,7 @@ const MapView = (props) => {
               lat={event.location.latitude}
               lng={event.location.longitude}
               value={props.zipCode}
+              markerClick={props.markerClick}
             />
           ))
         }

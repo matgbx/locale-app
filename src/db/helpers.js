@@ -17,6 +17,7 @@ const fetchEvents = (zip, date = '', cb) => {
       const eventsByDate = data[0].events.filter(event => event.date === dateQuery);
       const eventList = {
         zipCode: zip,
+        // center: { lat: zipCodes[zip], lng: zipCodes[1] },
         center: zipCodes[zip],
         events: eventsByDate,
       };

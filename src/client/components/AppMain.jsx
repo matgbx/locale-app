@@ -11,12 +11,16 @@ class AppMain extends React.Component {
       eventList: this.props.events,
       center: this.props.center,
       zipCode: this.props.zipCode,
+      userInput: 94123,
     };
     this.render = this.render.bind(this);
-    this.handleZipSubmit = this.handleZipSubmit.bind(this);
+    this.fetchData = this.fetchData.bind(this);
+    this.handleUserSubmit = this.handleUserSubmit.bind(this);
+    this.handleUserInput = this.handleUserInput.bind(this);
+    this.markerClick = this.markerClick.bind(this);
   }
   componentDidMount() {
-    this.fetchData(94117, '');
+    this.fetchData(this.state.userInput, '');
   }
 
   fetchData(zip, date) {
@@ -30,18 +34,27 @@ class AppMain extends React.Component {
     });
   }
 
-  handleZipSubmit(val) {
+  handleUserInput(val) {
+    this.setState({
+      userInput: val,
+    });
+  }
 
+  handleUserSubmit() {
+    const zip = this.state.userInput;
+    this.fetchData(zip, '');
+  }
+  markerClick(val) {
+    console.log('clicked!', val);
   }
 
   render() {
-    console.log('API Key ===> ', process.env.GOOGLE_API);
     return (
       <div>
         <div className="header">LOCALE</div>
         <div className="navBar">
-          <input className="inputBox" type="text" placeholder="enter your zip..." />
-          <div className="submitBtn" onClick={this.handleZipSubmit}>submit</div>
+          <input className="inputBox" type="text" placeholder="enter your zip..." onChange={(evt) => { this.handleUserInput(evt.target.value) }} />
+          <div className="submitBtn" onClick={this.handleUserSubmit}>submit</div>
         </div>
         <div className="container">
           <div className="sideBar"></div>
@@ -52,6 +65,7 @@ class AppMain extends React.Component {
             center={this.state.center}
             zipCode={this.state.zipCode}
             eventList={this.state.eventList}
+            markerClick={this.markerClick}
           />
         </div>
       </div>);

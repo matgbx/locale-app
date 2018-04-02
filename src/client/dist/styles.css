@@ -73,8 +73,8 @@ body {
   background-repeat: no-repeat;
   background-size: contain;
   width: 100%;
+  padding-top: 20px;
   min-height: 1400px;
-  margin-top: 20px;
 }
 
 .sideBar {
@@ -84,9 +84,9 @@ body {
 }
 
 .google-map {
-  margin-left: 20px;
+  margin-left: 50px;
   height: 400px;
-  width: 400px;
+  width: 40%;
 }
 
 .eventContainer {
@@ -168,4 +168,5 @@ body {
 
 .marker:hover {
   z-index: 1;
+  background-color: red;
 }
