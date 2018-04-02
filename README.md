@@ -1,4 +1,4 @@
-# Locale-App
+# Locale
 An app that shows you all of the local community events happening in your neighborhood
 
 ## Set up
