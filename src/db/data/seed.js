@@ -1,11 +1,11 @@
-const dataGen = require('./dataGen');
+const { genEventsByZip } = require('./dataGen');
 const { exec } = require('child_process');
 const mongoose = require('mongoose');
 const Hoods = require('./schema');
 
 mongoose.connect('mongodb://localhost/the-locale');
 
-dataGen(200, (done) => {
+genEventsByZip(200, (done) => {
   if (done) {
     const path = './eventData.json';
     exec(`mongoimport --db the-locale --collection hoods --drop --file ${path}`, (err, result) => {
