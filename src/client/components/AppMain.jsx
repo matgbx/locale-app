@@ -1,4 +1,5 @@
 import React from 'react';
+// import PropTypes from 'prop-types';
 import EventList from './EventList';
 import getEvents from '../libs/helpers';
 import MapView from './MapView';
@@ -45,6 +46,7 @@ class AppMain extends React.Component {
     this.fetchData(zip, '');
   }
   markerClick(val) {
+    // nb: console used for testing purposes currently
     console.log('clicked!', val);
   }
 
@@ -53,11 +55,18 @@ class AppMain extends React.Component {
       <div>
         <div className="header">LOCALE</div>
         <div className="navBar">
-          <input className="inputBox" type="text" placeholder="enter your zip..." onChange={(evt) => { this.handleUserInput(evt.target.value) }} />
-          <div className="submitBtn" onClick={this.handleUserSubmit}>submit</div>
+          <input className="inputBox" type="text" placeholder="enter your zip..." onChange={(evt) => { this.handleUserInput(evt.target.value); }} />
+          <div
+            className="submitBtn"
+            role="button"
+            tabIndex="0"
+            onClick={() => this.handleUserSubmit()}
+            onKeyDown={() => this.handleUserSubmit()}
+          >submit
+          </div>
         </div>
         <div className="container">
-          <div className="sideBar"></div>
+          <div className="sideBar" />
           <EventList
             events={this.state.eventList}
           />
@@ -71,5 +80,12 @@ class AppMain extends React.Component {
       </div>);
   }
 }
+
+// AppMain.propTypes = {
+//   events: PropTypes.arrayOf(PropTypes.object).isRequired,
+//   zipCode: PropTypes.number.isRequired,
+//   center: PropTypes.arrayOf(PropTypes.number).isRequired,
+// };
+
 
 export default AppMain;

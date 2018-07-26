@@ -1,8 +1,11 @@
 import React from 'react';
 import GoogleMapReact from 'google-map-react';
+import keyIndex from 'react-key-index';
+// import PropTypes from 'prop-types';
 import MapMarker from './MapMarker';
 
 const MapView = (props) => {
+  const listWithKeys = keyIndex(props.eventList, 1);
   return (
     <div className="google-map">
       <GoogleMapReact
@@ -11,11 +14,13 @@ const MapView = (props) => {
         defaultZoom={15}
       >
         {
-          props.eventList.map(event => (
+          listWithKeys.map((event, i) => (
             <MapMarker
+              key={event._titleId}
               lat={event.location.latitude}
               lng={event.location.longitude}
               value={props.zipCode}
+              index={i}
               markerClick={props.markerClick}
             />
           ))
@@ -24,5 +29,12 @@ const MapView = (props) => {
     </div>
   );
 };
+
+// MapView.propTypes = {
+//   zipCode: PropTypes.string.isRequired,
+//   eventList: PropTypes.arrayOf(PropTypes.object).isRequired,
+//   center: PropTypes.arrayOf(PropTypes.number).isRequired,
+//   markerClick: PropTypes.func.isRequired,
+// };
 
 export default MapView;

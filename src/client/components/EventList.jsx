@@ -1,13 +1,21 @@
 import React from 'react';
+import keyIndex from 'react-key-index';
+// import PropTypes from 'prop-types';
 import EventComp from './EventComp';
 
-const EventList = ((props) => {
+const EventList = (props) => {
+  const listWithKeys = keyIndex(props.events, 1);
   return (
     <div className="eventList">
       {
-        props.events.map(event => <EventComp eventData={event} key={94123} />)
+        listWithKeys.map(event => <EventComp eventData={event} key={event._titleId} />)
       }
-    </div>);
-});
+    </div>
+  );
+};
+
+// EventList.propTypes = {
+//   events: PropTypes.arrayOf(PropTypes.object).isRequired,
+// };
 
 module.exports = EventList;
