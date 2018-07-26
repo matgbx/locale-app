@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 
-const APP_DIR = path.join(__dirname, '/src/client');
+const APP_DIR = path.join(__dirname, '/src/client/');
 const BUILD_DIR = path.join(__dirname, '/src/client/dist');
 
 const config = {
